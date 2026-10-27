@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Open me :3</title>
+<style>
+:root{
+  --bg1:#ffe3ef;--bg2:#e9d8ff;--card:#ffffff;--text:#6a1b4d;--accent:#ff5fa2;--accent2:#c77dff;--shadow:rgba(255,95,162,.35);
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){--bg1:#2a1030;--bg2:#1a1038;--card:#2f1b3d;--text:#ffd3ea;--accent:#ff7ab8;--accent2:#b388ff;--shadow:rgba(255,122,184,.3);}
+}
+:root[data-theme="dark"]{--bg1:#2a1030;--bg2:#1a1038;--card:#2f1b3d;--text:#ffd3ea;--accent:#ff7ab8;--accent2:#b388ff;--shadow:rgba(255,122,184,.3);}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;height:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  font-family:"Quicksand","Segoe UI",system-ui,sans-serif;color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));background-color:var(--bg1)}
+.heart{position:fixed;bottom:-40px;font-size:22px;opacity:.6;animation:float linear infinite;pointer-events:none}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.card{position:relative;width:min(88vw,360px);padding:36px 24px;text-align:center;background:var(--card);
+  border-radius:28px;border:3px dashed var(--accent);box-shadow:0 12px 40px var(--shadow)}
+.card::before,.card::after{content:"✿";position:absolute;font-size:28px;color:var(--accent2)}
+.card::before{top:-16px;left:-10px}.card::after{bottom:-16px;right:-10px}
+.gift{font-size:72px;animation:bounce 1.6s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-10px) rotate(-4deg)}}
+h1{margin:8px 0 22px;font-size:22px}
+button{font:inherit;font-weight:700;font-size:18px;color:#fff;border:0;cursor:pointer;padding:12px 40px;border-radius:999px;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));box-shadow:0 6px 18px var(--shadow);transition:transform .15s}
+button:hover{transform:scale(1.07)}button:active{transform:scale(.95)}
+.msg{display:none}
+.card.open .closed{display:none}
+.card.open .msg{display:block;animation:pop .6s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.msg p{font-size:26px;font-weight:700;line-height:1.35;margin:10px 0;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.msg small{font-size:30px}
+</style>
+</head>
+<body>
+<div class="card" id="card">
+  <div class="closed">
+    <div class="gift">🎁</div>
+    <h1>Em mở ra đi! ✨</h1>
+    <button id="openBtn">Open</button>
+  </div>
+  <div class="msg">
+    <div class="gift">💖</div>
+    <p>Em thiệt là xinh đẹp,<br>BNgoc oi</p>
+    <small>:3</small>
+  </div>
+</div>
+<script>
+const card=document.getElementById('card');
+document.getElementById('openBtn').addEventListener('click',()=>{
+  card.classList.add('open');
+  for(let i=0;i<24;i++){
+    const h=document.createElement('div');
+    h.className='heart';h.textContent=['💗','💖','🌸','✨'][i%4];
+    h.style.left=Math.random()*100+'vw';
+    h.style.animationDuration=(4+Math.random()*4)+'s';
+    h.style.animationDelay=(Math.random()*1.5)+'s';
+    document.body.appendChild(h);
+  }
+});
+for(let i=0;i<10;i++){
+  const h=document.createElement('div');
+  h.className='heart';h.textContent='💗';
+  h.style.left=Math.random()*100+'vw';
+  h.style.animationDuration=(7+Math.random()*6)+'s';
+  h.style.animationDelay=(Math.random()*6)+'s';
+  document.body.appendChild(h);
+}
+</script>
+</body>
+</html>
